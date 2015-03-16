@@ -79,7 +79,7 @@ Rails.application.configure do
   
   host = 'stormy-anchorage-3744.herokuapp.com'
   config.action_mailer.default_url_options = {host: host}
-  ActionMailer::Base.smtp_setting = {
+  ActionMailer::Base.smtp_settings = {
     :address              => 'smtp.sendgrid.net',
     :port                 => '587',
     :authentication       => :plain,
