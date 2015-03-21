@@ -30,6 +30,20 @@ test "index as admin including pagination and delete links" do
       get users_path
       assert_select 'a', text: 'delete', count: 0
     end
+
+    test "no unactivted users " do
+      log_in_as(@admin)
+      @admin.update_attribute(:activated, false)
+      get users_path
+      assert_select 'a[href=?]', user_path(@admin), text: @admin.name, count: 0
+    end
+
+    test "no unactivted user profile " do
+      log_in_as(@admin)
+      @admin.update_attribute(:activated, false)
+      get user_path(@admin)
+      assert_template nil
+    end    
   end
 
   
